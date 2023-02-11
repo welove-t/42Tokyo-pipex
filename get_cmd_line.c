@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_path.c                                         :+:      :+:    :+:   */
+/*   get_cmd_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:59:52 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/11 14:59:34 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/11 15:54:29 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static int	get_env_index_path(void);
+static char	*get_path(char *cmd);
 
-char	*get_path(char *cmd)
+char	**get_cmd_array(char *cmd_line)
+{
+	char	**r_str_array;
+
+	r_str_array = do_split(cmd_line, CMD_LINE_SEP);
+	r_str_array[0] = get_path(r_str_array[0]);
+	return (r_str_array);
+}
+
+static char	*get_path(char *cmd)
 {
 	int		i_env_path;
 	int		i;

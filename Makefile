@@ -6,7 +6,7 @@
 #    By: terabu <terabu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/11 13:30:56 by terabu            #+#    #+#              #
-#    Updated: 2023/02/11 14:52:12 by terabu           ###   ########.fr        #
+#    Updated: 2023/02/11 15:54:22 by terabu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = pipex
 SRCS = pipex.c \
-	   get_path.c \
+	   get_cmd_line.c \
 	   do_libft.c
 OBJS = $(SRCS:.c=.o)
 

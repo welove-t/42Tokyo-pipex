@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/11 15:13:44 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/11 15:54:12 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 int	main(int argc, char *argv[])
 {
-	char	*path;
+	char	**cmd_line;
+	int		i;
 
 	(void)argc;
-	path = get_path(argv[1]);
-	printf("%s\n", path);
+	cmd_line = get_cmd_array(argv[1]);
+	i = 0;
+	while (cmd_line[i])
+	{
+		printf("%s\n", cmd_line[i]);
+		i++;
+	}
+	execve(cmd_line[0], cmd_line, environ);
 	// char	*x_exe[3];
 	// int		fd[2];
 

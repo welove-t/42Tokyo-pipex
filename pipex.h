@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/11 14:46:28 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/11 15:51:15 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ENV_PATH_START		5
 # define ENV_PATH_SEP		':'
 # define CMD_PATH			"/"
+# define CMD_LINE_SEP		' '
 
 extern char	**environ;
 
@@ -33,7 +34,7 @@ char	*do_strjoin(char *s1, char *s2);
 char	*do_strdup(char *s);
 char	**do_split(char *str, char sep);
 
-// get_path
-char	*get_path(char *cmd);
+// get_cmd_line
+char	**get_cmd_array(char *cmd_line);
 
 #endif
