@@ -6,13 +6,13 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/12 12:56:43 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 07:53:49 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	do_open(const char *file_path, const char *flag)
+int	do_open(const char *file_path, int flag)
 {
 	int	r_fd;
 
@@ -22,14 +22,14 @@ int	do_open(const char *file_path, const char *flag)
 	return (r_fd);
 }
 
-int	*do_pipe(void)
-{
-	int	fildes[2];
+// int	*do_pipe(void)
+// {
+// 	int	fildes[2];
 
-	if (pipe(fildes) < 0)
-		exit(1);
-	return (fildes);
-}
+// 	if (pipe(fildes) < 0)
+// 		exit(1);
+// 	return (fildes);
+// }
 
 void	do_dup2(int old_fd, int new_fd)
 {
@@ -37,7 +37,7 @@ void	do_dup2(int old_fd, int new_fd)
 		exit(1);
 }
 
-void	do_execve(const char *cmd_argv[])
+void	do_execve(char **cmd_argv)
 {
 	if (execve(cmd_argv[0], cmd_argv, environ) < 0)
 		exit(1);
