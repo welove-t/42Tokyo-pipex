@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 12:25:34 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 13:06:32 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	do_child(int i_fd[], char *outfile, char **cmd)
 	do_dup2(i_fd[0], STDIN_FILENO);
 
 	// output file
-	fd = do_open(outfile, O_WRONLY);
+	fd = do_open_normal_write(outfile);
 	do_dup2(fd, STDOUT_FILENO);
 	do_execve(cmd);
 	close(i_fd[0]);

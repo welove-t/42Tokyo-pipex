@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 12:25:56 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 13:05:59 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	do_dup2(int old_fd, int new_fd);
 void	do_execve(char **cmd_argv);
 pid_t	do_fork(void);
 void	do_wait(void);
+int		do_open_normal_write(const char *file_path);
 
 // get_cmd_line
 char	**get_cmd_array(char *cmd_line);

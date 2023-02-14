@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 12:25:34 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 13:12:48 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ int	do_open(const char *file_path, int flag)
 	return (r_fd);
 }
 
+int	do_open_normal_write(const char *file_path)
+{
+	int	r_fd;
+
+	r_fd = open(file_path, O_WRONLY | O_CREAT | O_TRUNC, \
+				S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	if (r_fd < 0)
+		exit(1);
+	return (r_fd);
+}
 // int	*do_pipe(void)
 // {
 // 	int	fildes[2];
