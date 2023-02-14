@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 12:11:14 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 12:25:34 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	do_child(int i_fd[], char *outfile, char **cmd)
 void	do_parent(int o_fd[], char *infile, char **cmd)
 {
 	int	fd;
-	int	status;
 
 	close(o_fd[0]);
-
 	// input infile
 	fd = do_open(infile, O_RDONLY);
 	close(STDIN_FILENO);
@@ -45,11 +43,7 @@ void	do_parent(int o_fd[], char *infile, char **cmd)
 	do_dup2(o_fd[1], STDOUT_FILENO);
 	do_execve(cmd);
 	close(fd);
-	if (wait(&status) < 0)
-	{
-		perror("wait");
-		exit(1);
-	}
+	do_wait();
 }
 
 int	main(int argc, char *argv[])

@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 12:05:38 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 12:25:34 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,15 @@ pid_t	do_fork(void)
 	if (r_pid < 0)
 		exit(1);
 	return (r_pid);
+}
+
+void	do_wait(void)
+{
+	int	status;
+
+	if (wait(&status) < 0)
+	{
+		perror("wait");
+		exit(1);
+	}
 }
