@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 07:49:19 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 11:17:12 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-# include "./libft/libft.h"
+# include "../common/libft/libft.h"
 
 # define ENV_PATH_NAME		"PATH="
 # define ENV_PATH_START		5

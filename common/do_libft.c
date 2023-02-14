@@ -6,11 +6,11 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:47:25 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/11 14:48:11 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 11:33:11 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../include/pipex.h"
 
 char	*do_strjoin(char *s1, char *s2)
 {
