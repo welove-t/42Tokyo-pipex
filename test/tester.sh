@@ -33,3 +33,26 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 # outを比較
 /bin/echo -n '3:'
 diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+
+
+#----4 infileが標準入力 ケース ----#
+# 本家
+< /dev/stdin cat | ls > outfile_sh
+
+# 自作
+../pipex /dev/stdin cat ls outfile
+
+# outを比較
+/bin/echo -n '4:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+
+#----5 infileが大きい ケース ----#
+# 本家
+< infile_5_bigsize cat | cat > outfile_sh
+
+# 自作
+../pipex infile_5_bigsize "cat" "cat" outfile
+
+# outを比較
+/bin/echo -n '5:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
