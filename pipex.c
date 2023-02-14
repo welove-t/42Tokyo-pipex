@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 12:00:35 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/14 12:11:14 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char *argv[])
 	cmd_line1 = get_cmd_array(argv[2]);
 	cmd_line2 = get_cmd_array(argv[3]);
 	pipe(fd);
-	pid = fork();
+	pid = do_fork();
 	if (pid)
 		do_parent(fd, argv[1], cmd_line1);
 	else
