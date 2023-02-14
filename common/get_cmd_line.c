@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:59:52 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 11:33:37 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/15 07:32:34 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static char	*get_path(char *cmd)
 	char	**path_array;
 	char	*r_str_path;
 
+	if (!access(cmd, X_OK))
+		return (cmd);
 	cmd = do_strjoin(CMD_PATH, cmd);
 	i_env_path = get_env_index_path();
 	path_array = do_split(&environ[i_env_path][ENV_PATH_START], ENV_PATH_SEP);
