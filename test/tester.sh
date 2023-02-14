@@ -14,10 +14,10 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 
 #----2 infile NULLケース ----#
 # 本家
-<infile_2_n grep a1 | wc> outfile_sh
+<infile_2_blank grep a1 | wc> outfile_sh
 
 # 自作
-../pipex infile_2_n "grep a1" "wc" outfile
+../pipex infile_2_blank "grep a1" "wc" outfile
 
 # outを比較
 /bin/echo -n '2:'
@@ -55,4 +55,26 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 
 # outを比較
 /bin/echo -n '5:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+
+#----6 cmdが絶対パス ケース ----#
+# 本家
+< infile_6_blank /bin/ls -1 | cat > outfile_sh
+
+# 自作
+../pipex infile_6_blank "/bin/ls -1" "cat" outfile
+
+# outを比較
+/bin/echo -n '6:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+
+#----7 自作cmd ケース ----#
+# 本家
+< infile ./echo7.sh | cat > outfile_sh
+
+# 自作
+../pipex infile "./echo7.sh" "cat" outfile
+
+# outを比較
+/bin/echo -n '7:'
 diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
