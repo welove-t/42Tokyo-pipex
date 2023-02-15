@@ -6,7 +6,7 @@
 #    By: terabu <terabu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/11 13:30:56 by terabu            #+#    #+#              #
-#    Updated: 2023/02/15 14:06:45 by terabu           ###   ########.fr        #
+#    Updated: 2023/02/15 14:53:22 by terabu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME = pipex
 
 # DIR
 C_DIR = common/
+B_DIR = bonus/
 I_DIR = include
 LIBFTDIR = $(C_DIR)libft
 
@@ -26,30 +27,34 @@ C_SRCS = $(C_DIR)get_cmd_line.c \
 		 $(C_DIR)do_error.c \
 		 $(C_DIR)do_libft.c
 M_SRCS = pipex.c
+B_SRCS = $(B_DIR)pipex_bonus.c
 
+# OBJS
 C_OBJS = $(C_SRCS:.c=.o)
 M_OBJS = $(M_SRCS:.c=.o)
+B_OBJS = $(B_SRCS:.c=.o)
+ifeq ($(MAKECMDGOALS),bonus)
+	OBJS = $(B_OBJS)
+else
+	OBJS = $(M_OBJS)
+endif
 
 INCLUDE = -I$(I_DIR)
 LIBFT = -L$(LIBFTDIR) -lft
 
 all: $(NAME)
 
-$(NAME): $(M_OBJS) $(C_OBJS)
+$(NAME): $(OBJS) $(C_OBJS)
 	$(MAKE) -C ${LIBFTDIR}
-	$(CC) $(CFLAGS) -o $@ $(M_OBJS) $(C_OBJS) $(INCLUDE) $(LIBFT)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(C_OBJS) $(INCLUDE) $(LIBFT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 
-# $(C_OBJS): $(C_SRCS)
-# 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
-
-# $(M_OBJS): $(M_SRCS)
-# 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+bonus: all
 
 clean:
-	rm -f $(C_OBJS) $(M_OBJS)
+	rm -f $(C_OBJS) $(M_OBJS) $(B_OBJS)
 	$(MAKE) -C ${LIBFTDIR} clean
 
 fclean: clean
@@ -58,4 +63,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re bonus
