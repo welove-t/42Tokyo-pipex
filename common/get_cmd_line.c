@@ -6,32 +6,35 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:59:52 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 08:37:34 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/15 09:58:15 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+static char	*get_cmd(char *cmd);
 static char	*get_path(char *cmd);
+
 
 char	**get_cmd_array(char *cmd_line)
 {
 	char	**r_str_array;
 
 	r_str_array = do_split(cmd_line, CMD_LINE_SEP);
-	r_str_array[0] = get_path(r_str_array[0]);
+	if (ft_strchr(r_str_array[0], ENV_SELL_PATH))
+		r_str_array[0] = get_path(r_str_array[0]);
+	else
+		r_str_array[0] = get_cmd(r_str_array[0]);
 	return (r_str_array);
 }
 
-static char	*get_path(char *cmd)
+static char	*get_cmd(char *cmd)
 {
 	int		i_env_path;
 	int		i;
 	char	**path_array;
 	char	*r_str_path;
 
-	if (!access(cmd, X_OK))
-		return (cmd);
 	cmd = do_strjoin(CMD_PATH, cmd);
 	i_env_path = get_env_index(ENV_PATH_NAME, ENV_PATH_START);
 	path_array = do_split(&environ[i_env_path][ENV_PATH_START], ENV_PATH_SEP);
@@ -47,6 +50,12 @@ static char	*get_path(char *cmd)
 	return (NULL);
 }
 
+static char	*get_path(char *cmd)
+{
+	if (!access(cmd, X_OK))
+		return (cmd);
+	return (NULL);
+}
 // int	check_path_access(char *str_path_array)
 // {
 // 	char	**r_str_array;

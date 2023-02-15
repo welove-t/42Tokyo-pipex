@@ -89,3 +89,14 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 # outを比較
 /bin/echo -n '8:'
 diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+
+#----9 存在しないパス　ケース ----#
+# 本家
+<infile ./hoge | echo test9> outfile_sh
+
+# 自作
+../pipex infile "./hoge" "echo test9" outfile
+
+# outを比較
+/bin/echo -n '9:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
