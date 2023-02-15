@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 09:24:12 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/15 13:48:40 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	do_child(int i_fd[], char *outfile, char *cmd)
 
 	close(i_fd[1]);
 	cmd_line = get_cmd_array(cmd);
-	printf("%s\n", cmd_line[0]);
 	if (!cmd_line[0])
 		return (error_not_exist_cmd(cmd));
 	// input pipe
@@ -60,7 +59,8 @@ int	main(int argc, char *argv[])
 	int		fd[2];
 	pid_t	pid;
 
-	(void)argc;
+	if (argc != 5)
+		return (0);
 	pipe(fd);
 	pid = do_fork();
 	if (pid)
