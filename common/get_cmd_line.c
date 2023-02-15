@@ -6,13 +6,12 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:59:52 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 07:32:34 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/15 08:37:34 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static int	get_env_index_path(void);
 static char	*get_path(char *cmd);
 
 char	**get_cmd_array(char *cmd_line)
@@ -34,7 +33,7 @@ static char	*get_path(char *cmd)
 	if (!access(cmd, X_OK))
 		return (cmd);
 	cmd = do_strjoin(CMD_PATH, cmd);
-	i_env_path = get_env_index_path();
+	i_env_path = get_env_index(ENV_PATH_NAME, ENV_PATH_START);
 	path_array = do_split(&environ[i_env_path][ENV_PATH_START], ENV_PATH_SEP);
 	i = 0;
 	while (path_array[i])
@@ -45,7 +44,7 @@ static char	*get_path(char *cmd)
 		free(r_str_path);
 		i++;
 	}
-	return ("NG");
+	return (NULL);
 }
 
 // int	check_path_access(char *str_path_array)
@@ -59,14 +58,14 @@ static char	*get_path(char *cmd)
 
 // }
 
-static int	get_env_index_path(void)
+int	get_env_index(const char *key, int index_start)
 {
 	int	i;
 
 	i = 0;
 	while (environ[i])
 	{
-		if (!ft_strncmp(environ[i], ENV_PATH_NAME, ENV_PATH_START))
+		if (!ft_strncmp(environ[i], key, index_start))
 			return (i);
 		i++;
 	}
