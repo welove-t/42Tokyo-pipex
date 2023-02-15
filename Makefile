@@ -6,7 +6,7 @@
 #    By: terabu <terabu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/11 13:30:56 by terabu            #+#    #+#              #
-#    Updated: 2023/02/15 09:16:46 by terabu           ###   ########.fr        #
+#    Updated: 2023/02/15 14:06:45 by terabu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LIBFTDIR = $(C_DIR)libft
 
 # SRCS
 C_SRCS = $(C_DIR)get_cmd_line.c \
-		 $(C_DIR)do_system_call.c \
+		 $(C_DIR)do_system_call_fd.c \
+		 $(C_DIR)do_system_call_pipe.c \
 		 $(C_DIR)do_error.c \
 		 $(C_DIR)do_libft.c
 M_SRCS = pipex.c

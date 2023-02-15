@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 10:08:46 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/15 14:10:42 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,17 @@ char	*do_strjoin(char *s1, char *s2);
 char	*do_strdup(char *s);
 char	**do_split(char *str, char sep);
 
-// do_system_call
-int		do_open(const char *file_path, int flag);
-int		*do_pipe(void);
+// do_system_call(file)
+int		do_open_read(const char *file_path);
+int		do_open_normal_write(const char *file_path);
+void	do_close(int fd);
+
+// do_system_call(pipe)
+void	do_pipe(int fd[2]);
 void	do_dup2(int old_fd, int new_fd);
 void	do_execve(char **cmd_argv);
 pid_t	do_fork(void);
 void	do_wait(void);
-int		do_open_normal_write(const char *file_path);
 
 // do_error
 void	error_not_exist_cmd(char *cmd);

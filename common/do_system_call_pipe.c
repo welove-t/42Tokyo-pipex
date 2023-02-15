@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_system_call.c                                   :+:      :+:    :+:   */
+/*   do_system_call_pipe.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/14 13:12:48 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/15 14:11:17 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-int	do_open(const char *file_path, int flag)
+void	do_pipe(int fd[2])
 {
-	int	r_fd;
-
-	r_fd = open(file_path, flag);
-	if (r_fd < 0)
+	if (pipe(fd) < 0)
+	{
+		perror("pipe");
 		exit(1);
-	return (r_fd);
+	}
 }
-
-int	do_open_normal_write(const char *file_path)
-{
-	int	r_fd;
-
-	r_fd = open(file_path, O_WRONLY | O_CREAT | O_TRUNC, \
-				S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	if (r_fd < 0)
-		exit(1);
-	return (r_fd);
-}
-// int	*do_pipe(void)
-// {
-// 	int	fildes[2];
-
-// 	if (pipe(fildes) < 0)
-// 		exit(1);
-// 	return (fildes);
-// }
 
 void	do_dup2(int old_fd, int new_fd)
 {
