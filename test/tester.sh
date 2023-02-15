@@ -69,15 +69,15 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 
 #----7 自作cmd ケース ----#
-# # 本家
-# < infile ./echo7.sh | cat > outfile_sh
+# 本家
+< infile ./echo7 | cat > outfile_sh
 
-# # 自作
-# ../pipex infile "./echo7.sh" "cat" outfile
+# 自作
+../pipex infile "./echo7" "cat" outfile
 
-# # outを比較
-# /bin/echo -n '7:'
-# diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+# outを比較
+/bin/echo -n '7:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 
 #----8 存在しないコマンド　ケース ----#
 # 本家
