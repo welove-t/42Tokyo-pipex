@@ -6,7 +6,7 @@
 #    By: terabu <terabu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/11 13:30:56 by terabu            #+#    #+#              #
-#    Updated: 2023/02/18 12:16:33 by terabu           ###   ########.fr        #
+#    Updated: 2023/02/18 14:09:32 by terabu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ C_SRCS = $(C_DIR)get_cmd_line.c \
 		 $(C_DIR)do_dup_close.c \
 		 $(C_DIR)do_libft.c
 M_SRCS = pipex.c
-B_SRCS = $(B_DIR)pipex_bonus.c
+B_SRCS = $(B_DIR)pipex_bonus.c \
+		 $(B_DIR)set_pipex_bonus.c
 
 # OBJS
 C_OBJS = $(C_SRCS:.c=.o)
