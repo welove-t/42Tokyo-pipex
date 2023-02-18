@@ -6,7 +6,7 @@
 #    By: terabu <terabu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/11 13:30:56 by terabu            #+#    #+#              #
-#    Updated: 2023/02/15 14:53:22 by terabu           ###   ########.fr        #
+#    Updated: 2023/02/18 12:16:33 by terabu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ C_SRCS = $(C_DIR)get_cmd_line.c \
 		 $(C_DIR)do_system_call_fd.c \
 		 $(C_DIR)do_system_call_pipe.c \
 		 $(C_DIR)do_error.c \
+		 $(C_DIR)do_dup_close.c \
 		 $(C_DIR)do_libft.c
 M_SRCS = pipex.c
 B_SRCS = $(B_DIR)pipex_bonus.c

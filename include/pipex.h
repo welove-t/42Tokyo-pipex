@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 14:10:42 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/18 12:58:18 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ void	do_wait(void);
 
 // do_error
 void	error_not_exist_cmd(char *cmd);
+
+// do_dup_close
+void	redirect_in_dup_close(char *infile);
+void	output_pipe_dup_close(int fd[2]);
+void	input_pipe_dup_close(int fd[2]);
+void	redirect_out_dup_close(char *outfile);
 
 // get_cmd_line
 char	**get_cmd_array(char *cmd_line);
