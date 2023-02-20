@@ -100,3 +100,19 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 # outを比較
 /bin/echo -n '9:'
 diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+
+#----10 （）　ケース ----#
+
+
+#---- Bonus ----#
+
+#----11 （）多段　ケース ----#
+# 本家
+< infile grep p | sort | uniq | cat > outfile_sh
+
+# 自作
+../pipex infile "grep p" "sort" "uniq" "cat" outfile
+
+# outを比較
+/bin/echo -n '11:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"

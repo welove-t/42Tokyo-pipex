@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/20 15:53:51 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 07:55:48 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	do_child_last(int i_fd[], char *outfile, char *cmd)
 		return (error_not_exist_cmd(cmd));
 	input_pipe_dup_close(i_fd);
 	redirect_out_dup_close(outfile);
-	close(3);
-	close(4);
 	do_execve(cmd_line);
 }
 
@@ -60,10 +58,11 @@ void	do_child_first(int o_fd[], char *infile, char *cmd)
 	do_execve(cmd_line);
 }
 
-// void	do_partent_wait()
-// {
-
-// }
+void	close_pipe(t_pipex *pipex, int i)
+{
+	do_close(pipex[i].pfd[0]);
+	do_close(pipex[i].pfd[1]);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -86,15 +85,12 @@ int	main(int argc, char *argv[])
 		else if (pipex[i].pid == 0)
 			do_child_middle(pipex[i - 1].pfd, pipex[i].pfd, pipex[i].cmd);
 		else
-			printf("wait\n");
+		{
+			if (i > 0)
+				close_pipe(pipex, i - 1);
+		}
 		i++;
 	}
-	// wait
-	close(3);
-	close(4);
-	close(5);
-	close(6);
-	sleep(5);
 	return (0);
 }
 
