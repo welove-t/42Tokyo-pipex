@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/18 14:14:16 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:45:53 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_pipex
 {
 	pid_t	pid;
+	int		pfd[2];
 	char	*cmd;
 }	t_pipex;
 
