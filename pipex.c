@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 18:03:02 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 19:38:20 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ int	main(int argc, char *argv[])
 	int		i;
 	t_pipex	pipex;
 
-	pipex = set_init_pipex(argc - 3, argv);
-	if (argc < 5)
+
+	initialize(argc, argv, &pipex);
+	if (!pipex.min_arg_size || argc < pipex.min_arg_size)
 		return (0);
 	i = 0;
 	while (i < argc - 3)

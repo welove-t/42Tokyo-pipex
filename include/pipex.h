@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 18:02:23 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 19:38:54 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,16 @@ typedef struct s_proc
 typedef struct t_pipex
 {
 	t_proc	*proc;
-	int		here_doc_flg;
-	char	*here_doc_end;
+	char	*infile_name;
+	char	*outfile_name;
+	char	*here_doc_limiter;
+	int		min_arg_size;
 }	t_pipex;
 
 extern char	**environ;
 
 // initialize
-t_pipex	set_init_pipex(int cmd_cnt, char *argv[]);
-
+void	initialize(int argc, char *argv[], t_pipex *pipex);
 
 // do_libft
 char	*do_strjoin(char *s1, char *s2);
