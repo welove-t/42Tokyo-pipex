@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 16:36:08 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 18:02:23 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,25 @@
 # define ERR_CMD_NOT_FOUND	"command not found"
 # define ERR_SEP			": "
 
-typedef struct s_pipex
+typedef struct s_proc
 {
 	pid_t	pid;
 	int		pfd[2];
 	char	*cmd;
+}	t_proc;
+
+typedef struct t_pipex
+{
+	t_proc	*proc;
+	int		here_doc_flg;
+	char	*here_doc_end;
 }	t_pipex;
 
 extern char	**environ;
 
 // initialize
-t_pipex	*set_init_pipex(int cmd_cnt, char *argv[]);
+t_pipex	set_init_pipex(int cmd_cnt, char *argv[]);
+
 
 // do_libft
 char	*do_strjoin(char *s1, char *s2);
@@ -82,7 +90,7 @@ void	redirect_out_dup_close(const char *filepath);
 char	**get_cmd_array(char *cmd_line);
 int		get_env_index(const char *key, int index_start);
 
-void	do_waitpid_pipex(t_pipex *pipex, int cnt_proc);
+void	do_waitpid_pipex(t_proc *proc, int cnt_proc);
 
 
 #endif

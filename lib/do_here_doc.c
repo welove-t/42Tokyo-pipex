@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   finalize.c                                         :+:      :+:    :+:   */
+/*   do_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 13:25:27 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 17:51:15 by terabu           ###   ########.fr       */
+/*   Created: 2023/02/21 16:43:09 by terabu            #+#    #+#             */
+/*   Updated: 2023/02/21 17:45:59 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	do_waitpid_pipex(t_proc *proc, int cnt_proc)
+void	do_here_doc_in(void)
 {
-	int		i;
-	int		status;
-	pid_t	pid;
+	int	fd;
 
-	i = 0;
-	while (i < cnt_proc)
+	fd = do_open_heredoc_read();
+	while (1)
 	{
-		pid = waitpid(proc[i].pid, &status, 0);
-		if (pid < 0)
-			perror("waitpid");
-		i++;
+		// write()
 	}
+
 }

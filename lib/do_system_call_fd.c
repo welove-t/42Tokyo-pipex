@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 13:53:39 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 16:42:32 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	do_open_heredoc_read(void)
 {
 	int	r_fd;
 
-	r_fd = open(".here_doc", O_WRONLY | O_CREAT | O_TRUNC, \
+	r_fd = open(".here_doc", O_RDWR | O_CREAT | O_TRUNC, \
 				S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (r_fd < 0)
 	{
