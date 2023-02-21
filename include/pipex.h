@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 19:38:54 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 19:53:11 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ void	redirect_out_dup_close(const char *filepath);
 char	**get_cmd_array(char *cmd_line);
 int		get_env_index(const char *key, int index_start);
 
+// finalize
 void	do_waitpid_pipex(t_proc *proc, int cnt_proc);
+void	close_pipe(t_proc *proc, int idx_proc);
 
 
 #endif

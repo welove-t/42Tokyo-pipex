@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 19:50:22 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 19:53:27 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,10 @@ void	do_child_first(t_pipex *pipex, int idx_proc)
 	do_execve(cmd_line);
 }
 
-void	close_pipe(t_proc *proc, int i)
-{
-	do_close(proc[i].pfd[0]);
-	do_close(proc[i].pfd[1]);
-}
-
 int	main(int argc, char *argv[])
 {
 	int		i;
 	t_pipex	pipex;
-
 
 	initialize(argc, argv, &pipex);
 	if (!pipex.min_arg_size || argc < pipex.min_arg_size)
@@ -85,10 +78,7 @@ int	main(int argc, char *argv[])
 		else if (pipex.proc[i].pid == 0)
 			do_child_middle(&pipex, i);
 		else
-		{
-			if (i > 0)
-				close_pipe(pipex.proc, i - 1);
-		}
+			close_pipe(pipex.proc, i);
 		i++;
 	}
 	do_waitpid_pipex(pipex.proc, argc - 3);
