@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.h                                      :+:      :+:    :+:   */
+/*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 08:45:19 by terabu           ###   ########.fr       */
+/*   Created: 2023/02/18 13:16:16 by terabu            #+#    #+#             */
+/*   Updated: 2023/02/21 16:36:39 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_BONUS_H
-# define PIPEX_BONUS_H
+#include "pipex.h"
 
-# include "pipex.h"
-
-typedef struct s_pipex
+t_pipex	*set_init_pipex(int cmd_cnt, char *argv[])
 {
-	pid_t	pid;
-	int		pfd[2];
-	char	*cmd;
-}	t_pipex;
+	t_pipex	*pipex;
+	int		i;
 
-t_pipex	*set_init_pipex(int cmd_cnt, char *argv[]);
-void	do_waitpid_pipex(t_pipex *pipex, int cnt_proc);
-
-
-#endif
+	pipex = ft_calloc((cmd_cnt + 1), sizeof(t_pipex));
+	if (!pipex)
+		exit(1);
+	i = 0;
+	while (i < cmd_cnt)
+	{
+		pipex[i].cmd = argv[i + 2];
+		i++;
+	}
+	return (pipex);
+}

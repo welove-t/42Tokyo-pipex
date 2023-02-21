@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
+/*   finalize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 13:16:16 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 11:32:50 by terabu           ###   ########.fr       */
+/*   Created: 2023/02/21 13:25:27 by terabu            #+#    #+#             */
+/*   Updated: 2023/02/21 15:57:55 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
-
-t_pipex	*set_init_pipex(int cmd_cnt, char *argv[])
-{
-	int		i;
-	t_pipex	*pipex;
-
-	pipex = ft_calloc((cmd_cnt + 1), sizeof(t_pipex));
-	if (!pipex)
-		exit(1);
-	i = 0;
-	while (i < cmd_cnt)
-	{
-		pipex[i].cmd = argv[i + 2];
-		i++;
-	}
-	return (pipex);
-}
+#include "pipex.h"
 
 void	do_waitpid_pipex(t_pipex *pipex, int cnt_proc)
 {
 	int		i;
+	int		status;
+	pid_t	pid;
 
 	i = 0;
 	while (i < cnt_proc)
 	{
-		if (waitpid(pipex[i].pid, NULL, 0) < 0)
+		pid = waitpid(pipex[i].pid, &status, 0);
+		if (pid < 0)
 			perror("waitpid");
 		i++;
 	}
