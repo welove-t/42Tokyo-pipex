@@ -6,54 +6,54 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 19:38:20 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 19:50:22 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	do_child_last(int i_fd[], const char *outfile, char *cmd)
+void	do_child_last(t_pipex *pipex, int idx_proc)
 {
 	char	**cmd_line;
 
-	cmd_line = get_cmd_array(cmd);
+	cmd_line = get_cmd_array(pipex->proc[idx_proc].cmd);
 	if (!cmd_line[0])
 	{
-		error_not_exist_cmd(cmd);
+		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
 		exit(1);
 	}
-	input_pipe_dup_close(i_fd);
-	redirect_out_dup_close(outfile);
+	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
+	redirect_out_dup_close(pipex->outfile_name);
 	do_execve(cmd_line);
 }
 
-void	do_child_middle(int i_fd[], int o_fd[], char *cmd)
+void	do_child_middle(t_pipex *pipex, int idx_proc)
 {
 	char	**cmd_line;
 
-	cmd_line = get_cmd_array(cmd);
+	cmd_line = get_cmd_array(pipex->proc[idx_proc].cmd);
 	if (!cmd_line[0])
 	{
-		error_not_exist_cmd(cmd);
+		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
 		exit(1);
 	}
-	input_pipe_dup_close(i_fd);
-	output_pipe_dup_close(o_fd);
+	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
+	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
 	do_execve(cmd_line);
 }
 
-void	do_child_first(int o_fd[], const char *infile, char *cmd)
+void	do_child_first(t_pipex *pipex, int idx_proc)
 {
 	char	**cmd_line;
 
-	cmd_line = get_cmd_array(cmd);
+	cmd_line = get_cmd_array(pipex->proc[idx_proc].cmd);
 	if (!cmd_line[0])
 	{
-		error_not_exist_cmd(cmd);
+		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
 		exit(1);
 	}
-	redirect_in_dup_close(infile);
-	output_pipe_dup_close(o_fd);
+	redirect_in_dup_close(pipex->infile_name);
+	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
 	do_execve(cmd_line);
 }
 
@@ -79,11 +79,11 @@ int	main(int argc, char *argv[])
 			do_pipe(pipex.proc[i].pfd);
 		pipex.proc[i].pid = do_fork();
 		if (i == 0 && pipex.proc[i].pid == 0)
-			do_child_first(pipex.proc[i].pfd, argv[1], pipex.proc[i].cmd);
+			do_child_first(&pipex, i);
 		else if (i == argc - 4 && pipex.proc[i].pid == 0)
-			do_child_last(pipex.proc[i - 1].pfd, argv[argc - 1], pipex.proc[i].cmd);
+			do_child_last(&pipex, i);
 		else if (pipex.proc[i].pid == 0)
-			do_child_middle(pipex.proc[i - 1].pfd, pipex.proc[i].pfd, pipex.proc[i].cmd);
+			do_child_middle(&pipex, i);
 		else
 		{
 			if (i > 0)
