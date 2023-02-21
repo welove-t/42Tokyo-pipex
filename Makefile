@@ -6,7 +6,7 @@
 #    By: terabu <terabu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/11 13:30:56 by terabu            #+#    #+#              #
-#    Updated: 2023/02/21 13:52:56 by terabu           ###   ########.fr        #
+#    Updated: 2023/02/21 17:42:01 by terabu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME = pipex
 l_DIR = lib/
 I_DIR = include
 LIBFTDIR = $(l_DIR)libft
+GNLDIR = $(l_DIR)get_next_line
 
 # SRCS
 l_SRCS = $(l_DIR)get_cmd_line.c \
@@ -36,12 +37,14 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDE = -I$(I_DIR)
 LIBFT = -L$(LIBFTDIR) -lft
+GNL = -L$(GNLDIR) -lgnl
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(l_OBJS)
 	$(MAKE) -C ${LIBFTDIR}
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(l_OBJS) $(INCLUDE) $(LIBFT)
+	$(MAKE) -C ${GNLDIR}
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(l_OBJS) $(INCLUDE) $(LIBFT) $(GNL)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
@@ -49,10 +52,12 @@ $(NAME): $(OBJS) $(l_OBJS)
 clean:
 	rm -f $(OBJS) $(l_OBJS)
 	$(MAKE) -C ${LIBFTDIR} clean
+	$(MAKE) -C ${GNLDIR} clean
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C ${LIBFTDIR} fclean
+	$(MAKE) -C ${GNLDIR} fclean
 
 re: fclean all
 
