@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:16:16 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 19:38:13 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:03:38 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	set_pipex_heredoc(int cmd_cnt, char *argv[], t_pipex *pipex)
 		i++;
 	}
 	pipex->infile_name = argv[1];
-	pipex->here_doc_limiter = argv[2];
+	pipex->limiter = argv[2];
 	pipex->min_arg_size = 6;
 	pipex->proc = proc;
 }

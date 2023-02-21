@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 19:53:27 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:41:31 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	do_child_last(t_pipex *pipex, int idx_proc)
 		exit(1);
 	}
 	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
-	redirect_out_dup_close(pipex->outfile_name);
+	redirect_out_dup_close(pipex);
 	do_execve(cmd_line);
 }
 
@@ -52,7 +52,7 @@ void	do_child_first(t_pipex *pipex, int idx_proc)
 		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
 		exit(1);
 	}
-	redirect_in_dup_close(pipex->infile_name);
+	redirect_in_dup_close(pipex);
 	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
 	do_execve(cmd_line);
 }

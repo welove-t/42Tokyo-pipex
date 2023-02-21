@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:37:11 by terabu            #+#    #+#             */
-/*   Updated: 2022/11/10 14:13:16 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:37:30 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static char	*readline(char **save)
 	nextpoint = *save;
 	while (*nextpoint != '\n' && *nextpoint != '\0')
 		nextpoint++;
-	line = ft_strldup(*save, nextpoint - *save + 1);
+	line = ft_strldup_gnl(*save, nextpoint - *save + 1);
 	if (*nextpoint == '\n')
-		tmp = ft_strldup(nextpoint + 1, ft_strlen(nextpoint));
+		tmp = ft_strldup_gnl(nextpoint + 1, ft_strlen_gnl(nextpoint));
 	else
 		tmp = NULL;
 	free_save(save);
@@ -59,7 +59,7 @@ static char	*readbuff(int fd, char **save)
 	if (buf == NULL)
 		return (NULL);
 	rc = 1;
-	while (!ft_strchr(*save, '\n') && rc != 0)
+	while (!ft_strchr_gnl(*save, '\n') && rc != 0)
 	{
 		rc = read(fd, buf, BUFFER_SIZE);
 		if (rc == -1)
@@ -68,7 +68,7 @@ static char	*readbuff(int fd, char **save)
 			return (free_save(save));
 		}
 		buf[rc] = '\0';
-		tmp = ft_strjoin(*save, buf);
+		tmp = ft_strjoin_gnl(*save, buf);
 		free_save(save);
 		*save = tmp;
 	}

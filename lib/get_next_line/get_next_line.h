@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:37:08 by terabu            #+#    #+#             */
-/*   Updated: 2023/01/29 13:51:35 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:36:58 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # define BUFFER_SIZE 32
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strldup(const char *s, size_t len);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen_gnl(const char *str);
+char	*ft_strldup_gnl(const char *s, size_t len);
+char	*ft_strchr_gnl(const char *s, int c);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 #endif

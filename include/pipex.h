@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 19:53:11 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:32:44 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include "../lib/libft/libft.h"
+# include "../lib/get_next_line/get_next_line.h"
 
 # define ENV_PATH_NAME		"PATH="
 # define ENV_SHELL_NAME		"SHELL="
@@ -50,7 +51,7 @@ typedef struct t_pipex
 	t_proc	*proc;
 	char	*infile_name;
 	char	*outfile_name;
-	char	*here_doc_limiter;
+	char	*limiter;
 	int		min_arg_size;
 }	t_pipex;
 
@@ -82,14 +83,17 @@ void	do_wait(void);
 void	error_not_exist_cmd(char *cmd);
 
 // do_dup_close
-void	redirect_in_dup_close(const char *filepath);
+void	redirect_in_dup_close(t_pipex *pipex);
 void	output_pipe_dup_close(int fd[2]);
 void	input_pipe_dup_close(int fd[2]);
-void	redirect_out_dup_close(const char *filepath);
+void	redirect_out_dup_close(t_pipex *pipex);
 
 // get_cmd_line
 char	**get_cmd_array(char *cmd_line);
 int		get_env_index(const char *key, int index_start);
+
+// do_here_doc
+void	do_here_doc_in(t_pipex *pipex);
 
 // finalize
 void	do_waitpid_pipex(t_proc *proc, int cnt_proc);

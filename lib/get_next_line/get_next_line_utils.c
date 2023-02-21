@@ -6,13 +6,13 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:37:14 by terabu            #+#    #+#             */
-/*   Updated: 2022/11/08 12:44:38 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:36:46 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_gnl(const char *str)
 {
 	size_t	cnt;
 
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *str)
 	return (cnt);
 }
 
-char	*ft_strldup(const char *s, size_t len)
+char	*ft_strldup_gnl(const char *s, size_t len)
 {
 	char	*heap;
 	size_t	i;
@@ -43,7 +43,7 @@ char	*ft_strldup(const char *s, size_t len)
 	return (heap);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_gnl(const char *s, int c)
 {
 	char	cc;
 
@@ -58,7 +58,7 @@ char	*ft_strchr(const char *s, int c)
 		return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	char	*heap;
 	char	*temp;
@@ -68,11 +68,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	if (s2 == NULL)
-		return (ft_strldup(s1, ft_strlen(s1)));
+		return (ft_strldup_gnl(s1, ft_strlen_gnl(s1)));
 	if (s1 == NULL)
-		return (ft_strldup(s2, ft_strlen(s2)));
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
+		return (ft_strldup_gnl(s2, ft_strlen_gnl(s2)));
+	len_s1 = ft_strlen_gnl(s1);
+	len_s2 = ft_strlen_gnl(s2);
 	heap = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (heap == NULL)
 		return (NULL);
