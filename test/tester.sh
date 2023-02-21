@@ -106,7 +106,7 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 
 #---- Bonus ----#
 
-#----11 （）多段　ケース ----#
+#----11 多段(正常)　ケース ----#
 # 本家
 < infile grep p | sort | uniq | cat > outfile_sh
 
@@ -115,4 +115,15 @@ diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
 
 # outを比較
 /bin/echo -n '11:'
+diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"
+
+#----12 多段(一部NG)　ケース ----#
+# 本家
+< infile grep p | sort | uniq | hoge | ls > outfile_sh
+
+# 自作
+../pipex infile "grep p" "sort" "uniq" "hoge" "ls" outfile
+
+# outを比較
+/bin/echo -n '12:'
 diff -U 3 outfile_sh outfile && echo "OK" || echo "KO"

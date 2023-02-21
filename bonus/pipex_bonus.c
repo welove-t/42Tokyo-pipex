@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 07:55:48 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 11:08:29 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ void	do_child_last(int i_fd[], char *outfile, char *cmd)
 {
 	char	**cmd_line;
 
-	printf("last\n");
-	printf("last[fd]:%d %d\n", i_fd[0], i_fd[1]);
-	printf("last[cmd]:%s\n",cmd);
+	// printf("last\n");
+	// printf("last[fd]:%d %d\n", i_fd[0], i_fd[1]);
+	// printf("last[cmd]:%s\n",cmd);
 	cmd_line = get_cmd_array(cmd);
 	if (!cmd_line[0])
-		return (error_not_exist_cmd(cmd));
+	{
+		error_not_exist_cmd(cmd);
+		exit(1);
+	}
+	// if (!cmd_line[0])
+		// return (error_not_exist_cmd(cmd));
 	input_pipe_dup_close(i_fd);
 	redirect_out_dup_close(outfile);
 	do_execve(cmd_line);
@@ -31,13 +36,17 @@ void	do_child_middle(int i_fd[], int o_fd[], char *cmd)
 {
 	char	**cmd_line;
 
-	printf("middle\n");
-	printf("middle[fd]:%d %d\n", i_fd[0], i_fd[1]);
-	printf("middle[fd]:%d %d\n", o_fd[0], o_fd[1]);
-	printf("middle[cmd]:%s\n",cmd);
+	// printf("middle\n");
+	// printf("middle[fd]:%d %d\n", i_fd[0], i_fd[1]);
+	// printf("middle[fd]:%d %d\n", o_fd[0], o_fd[1]);
+	// printf("middle[cmd]:%s\n",cmd);
 	cmd_line = get_cmd_array(cmd);
 	if (!cmd_line[0])
-		return (error_not_exist_cmd(cmd));
+	{
+		error_not_exist_cmd(cmd);
+		exit(1);
+	}
+		// return (error_not_exist_cmd(cmd));
 	input_pipe_dup_close(i_fd);
 	output_pipe_dup_close(o_fd);
 	do_execve(cmd_line);
@@ -47,12 +56,15 @@ void	do_child_first(int o_fd[], char *infile, char *cmd)
 {
 	char	**cmd_line;
 
-	printf("first\n");
-	printf("first[fd]:%d %d\n", o_fd[0], o_fd[1]);
-	printf("first[cmd]:%s\n",cmd);
+	// printf("first\n");
+	// printf("first[fd]:%d %d\n", o_fd[0], o_fd[1]);
+	// printf("first[cmd]:%s\n",cmd);
 	cmd_line = get_cmd_array(cmd);
 	if (!cmd_line[0])
-		return (error_not_exist_cmd(cmd));
+	{
+		error_not_exist_cmd(cmd);
+		exit(1);
+	}
 	redirect_in_dup_close(infile);
 	output_pipe_dup_close(o_fd);
 	do_execve(cmd_line);
@@ -91,6 +103,7 @@ int	main(int argc, char *argv[])
 		}
 		i++;
 	}
+	do_waitpid_pipex(pipex, argc - 3);
 	return (0);
 }
 

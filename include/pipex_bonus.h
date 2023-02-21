@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/18 14:45:53 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 08:45:19 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ typedef struct s_pipex
 }	t_pipex;
 
 t_pipex	*set_init_pipex(int cmd_cnt, char *argv[]);
+void	do_waitpid_pipex(t_pipex *pipex, int cnt_proc);
+
 
 #endif

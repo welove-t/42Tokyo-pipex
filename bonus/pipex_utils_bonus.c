@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_pipex_bonus.c                                  :+:      :+:    :+:   */
+/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:16:16 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/18 14:16:18 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/21 11:32:50 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,15 @@ t_pipex	*set_init_pipex(int cmd_cnt, char *argv[])
 	return (pipex);
 }
 
+void	do_waitpid_pipex(t_pipex *pipex, int cnt_proc)
+{
+	int		i;
+
+	i = 0;
+	while (i < cnt_proc)
+	{
+		if (waitpid(pipex[i].pid, NULL, 0) < 0)
+			perror("waitpid");
+		i++;
+	}
+}
