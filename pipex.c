@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 15:09:13 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:21:25 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,6 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-// ./pipex infile "grep a1" "wc -l" outfile
+// ./pipex infile "grep 1p" "wc -l" outfile
+// ./pipex infile "grep p" "sort" "uniq" outfile
+// ./pipex here_doc "end" "cat" "wc -l" outfile_here
