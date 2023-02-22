@@ -6,11 +6,11 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:59:52 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 14:58:01 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 16:17:33 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 static char	*get_cmd(char *cmd);
 static char	*get_path(char *cmd);

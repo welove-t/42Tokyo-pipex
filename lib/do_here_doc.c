@@ -6,11 +6,11 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:43:09 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 15:09:13 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 16:16:56 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 void	input_here_doc(t_pipex *pipex, int fd)
 {

@@ -6,11 +6,11 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 15:09:13 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 16:17:20 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 void	do_pipe(int fd[2])
 {
@@ -52,13 +52,3 @@ pid_t	do_fork(void)
 	return (r_pid);
 }
 
-void	do_wait(void)
-{
-	int	status;
-
-	if (wait(&status) < 0)
-	{
-		perror("wait");
-		exit(EXIT_FAILURE);
-	}
-}

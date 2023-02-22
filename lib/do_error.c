@@ -6,11 +6,11 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:27:10 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 15:13:12 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 16:16:37 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 static void	put_error_msg(char *error_msg)
 {

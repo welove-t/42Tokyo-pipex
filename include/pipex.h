@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 14:54:43 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 16:13:43 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	do_pipe(int fd[2]);
 void	do_dup2(int old_fd, int new_fd);
 void	do_execve(char **cmd_argv);
 pid_t	do_fork(void);
-void	do_wait(void);
 
 // do_error
 void	error_not_exist_cmd(char *cmd);
@@ -108,7 +107,6 @@ int		get_env_index(const char *key, int index_start);
 // do_here_doc
 void	do_here_doc_in(t_pipex *pipex, int idx_proc);
 void	input_here_doc(t_pipex *pipex, int fd);
-
 
 // finalize
 void	finalize(t_pipex *pipex);

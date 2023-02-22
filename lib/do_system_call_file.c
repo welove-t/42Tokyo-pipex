@@ -6,11 +6,11 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 15:09:13 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 16:17:12 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 int	do_open_read(const char *file_path)
 {
