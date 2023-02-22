@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:25:27 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 13:54:49 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:49:56 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	finalize(t_pipex *pipex)
 	do_waitpid_pipex(pipex->proc, pipex->cnt_proc);
 	if (!ft_strncmp(pipex->infile_name, HERE_DOC_NAME, HERE_DOC_CNT))
 		do_unlink(HERE_DOC_FILE);
+	free(pipex->proc);
+	exit(EXIT_SUCCESS);
 }
 
 static void	do_waitpid_pipex(t_proc *proc, int cnt_proc)

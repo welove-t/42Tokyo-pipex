@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 15:21:25 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:50:53 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ int	main(int argc, char *argv[])
 	finalize(&pipex);
 	return (0);
 }
+
+// __attribute((destructor))
+// static void destructor() {
+//     system("leaks -q pipex");
+// }
 
 // ./pipex infile "grep 1p" "wc -l" outfile
 // ./pipex infile "grep p" "sort" "uniq" outfile
