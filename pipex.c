@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 15:50:53 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 17:24:07 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	do_child_last(t_pipex *pipex, int idx_proc)
 {
 	char	**cmd_line;
 
+	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
+	redirect_out_dup_close(pipex);
 	cmd_line = get_cmd_array(pipex->proc[idx_proc].cmd);
 	if (!cmd_line[0])
 	{
 		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
 		exit(EXIT_FAILURE);
 	}
-	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
-	redirect_out_dup_close(pipex);
 	do_execve(cmd_line);
 }
 
@@ -31,14 +31,14 @@ void	do_child_middle(t_pipex *pipex, int idx_proc)
 {
 	char	**cmd_line;
 
+	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
+	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
 	cmd_line = get_cmd_array(pipex->proc[idx_proc].cmd);
 	if (!cmd_line[0])
 	{
 		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
 		exit(EXIT_FAILURE);
 	}
-	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
-	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
 	do_execve(cmd_line);
 }
 
@@ -46,14 +46,14 @@ void	do_child_first(t_pipex *pipex, int idx_proc)
 {
 	char	**cmd_line;
 
+	redirect_in_dup_close(pipex);
+	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
 	cmd_line = get_cmd_array(pipex->proc[idx_proc].cmd);
 	if (!cmd_line[0])
 	{
 		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
 		exit(EXIT_FAILURE);
 	}
-	redirect_in_dup_close(pipex);
-	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
 	do_execve(cmd_line);
 }
 
