@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 12:32:59 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:50:41 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void	do_close(int fd)
 	if (close(fd) < 0)
 	{
 		perror("close");
+		exit(1);
+	}
+}
+
+void	do_unlink(char *filepath)
+{
+	if (unlink(filepath) < 0)
+	{
+		perror("unlink");
 		exit(1);
 	}
 }

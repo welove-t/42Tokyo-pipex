@@ -6,7 +6,7 @@
 #    By: terabu <terabu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/11 13:30:56 by terabu            #+#    #+#              #
-#    Updated: 2023/02/21 20:33:22 by terabu           ###   ########.fr        #
+#    Updated: 2023/02/22 13:56:24 by terabu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ GNLDIR = $(l_DIR)get_next_line
 
 # SRCS
 l_SRCS = $(l_DIR)get_cmd_line.c \
-		 $(l_DIR)do_system_call_fd.c \
+		 $(l_DIR)do_system_call_file.c \
 		 $(l_DIR)do_system_call_pipe.c \
 		 $(l_DIR)do_error.c \
 		 $(l_DIR)do_dup_close.c \

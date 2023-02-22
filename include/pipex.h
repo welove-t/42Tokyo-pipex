@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 13:42:49 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:51:28 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ char	**do_split(char *str, char sep);
 int		do_open_read(const char *file_path);
 int		do_open_write(const char *file_path);
 void	do_close(int fd);
+void	do_unlink(char *filepath);
+
 
 // do_system_call(pipe)
 void	do_pipe(int fd[2]);
