@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 16:13:43 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 17:35:12 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,5 @@ void	input_here_doc(t_pipex *pipex, int fd);
 // finalize
 void	finalize(t_pipex *pipex);
 void	close_pipe(t_proc *proc, int idx_proc);
-
 
 #endif
