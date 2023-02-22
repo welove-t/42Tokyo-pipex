@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 12:33:17 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:42:49 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
 # define ENV_SELL_PATH		'/'
 # define CMD_PATH			"/"
 # define CMD_LINE_SEP		' '
-# define HERE_DOC			"here_doc"
+# define HERE_DOC_NAME		"here_doc"
+# define HERE_DOC_FILE		".here_doc"
 # define HERE_DOC_CNT		8
 
 // ERROR
@@ -97,7 +98,8 @@ void	input_here_doc(t_pipex *pipex, int fd);
 
 
 // finalize
-void	do_waitpid_pipex(t_proc *proc, int cnt_proc);
+void	finalize(t_pipex *pipex);
+// void	do_waitpid_pipex(t_proc *proc, int cnt_proc);
 void	close_pipe(t_proc *proc, int idx_proc);
 
 

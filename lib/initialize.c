@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:16:16 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 09:57:25 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:20:07 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	initialize(int argc, char *argv[], t_pipex *pipex)
 {
 	if (argc < 5)
 		return ;
-	if (!ft_strncmp(argv[1], HERE_DOC, HERE_DOC_CNT))
+	if (!ft_strncmp(argv[1], HERE_DOC_NAME, HERE_DOC_CNT))
 		set_pipex_heredoc(argc - 4, argv, pipex);
 	else
 		set_pipex_normal(argc - 3, argv, pipex);

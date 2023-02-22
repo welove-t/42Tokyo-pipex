@@ -6,13 +6,20 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:25:27 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 19:52:51 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:42:42 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	do_waitpid_pipex(t_proc *proc, int cnt_proc)
+static void	do_waitpid_pipex(t_proc *proc, int cnt_proc);
+
+void	finalize(t_pipex *pipex)
+{
+	do_waitpid_pipex(pipex->proc, pipex->cnt_proc);
+}
+
+static void	do_waitpid_pipex(t_proc *proc, int cnt_proc)
 {
 	int		i;
 	int		status;

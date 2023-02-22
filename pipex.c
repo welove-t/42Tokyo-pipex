@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 11:10:08 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:43:56 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 			close_pipe(pipex.proc, i);
 		i++;
 	}
-	do_waitpid_pipex(pipex.proc, pipex.cnt_proc);
+	finalize(&pipex);
 	return (0);
 }
 
