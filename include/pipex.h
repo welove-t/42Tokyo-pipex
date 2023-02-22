@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 14:09:08 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 14:54:43 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,28 @@
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
 
-# define ENV_PATH_NAME		"PATH="
-# define ENV_SHELL_NAME		"SHELL="
-# define ENV_PATH_START		5
-# define ENV_SHELL_START	6
-# define ENV_PATH_SEP		':'
-# define ENV_SELL_PATH		'/'
-# define CMD_PATH			"/"
-# define CMD_LINE_SEP		' '
-# define HERE_DOC_NAME		"here_doc"
-# define HERE_DOC_FILE		".here_doc"
-# define HERE_DOC_CNT		8
+# define ENV_PATH_NAME				"PATH="
+# define ENV_SHELL_NAME				"SHELL="
+# define ENV_PATH_SEP				':'
+# define ENV_SELL_PATH				'/'
+# define CMD_PATH					"/"
+# define CMD_LINE_SEP				' '
+# define HERE_DOC_NAME				"here_doc"
+# define HERE_DOC_FILE				".here_doc"
+# define HERE_DOC_CNT				8
+
+// MAGIC NUMBER
+# define ENV_PATH_START					5
+# define ENV_SHELL_START				6
+# define ARGS_INFILE_PATH				1
+# define ARGS_OUTFILE_PATH_WEI			1
+# define ARGS_CMD_CNT_WEI_NOMAL			3
+# define ARGS_CMD_CNT_WEI_HERE_DOC		4
+# define ARGS_LIMITER					2
+# define ARGS_MIN_NORMAL				5
+# define ARGS_MIN_HERE_DOC				6
+# define ARGS_CMD_WEI_NOMAL				2
+# define ARGS_CMD_WEI_HERE_DOC			3
 
 // ERROR
 # define ERR_CMD_NOT_FOUND	"command not found"
@@ -74,7 +85,6 @@ int		do_open_write_append(const char *file_path);
 void	do_close(int fd);
 void	do_unlink(char *filepath);
 
-
 // do_system_call(pipe)
 void	do_pipe(int fd[2]);
 void	do_dup2(int old_fd, int new_fd);
@@ -102,7 +112,6 @@ void	input_here_doc(t_pipex *pipex, int fd);
 
 // finalize
 void	finalize(t_pipex *pipex);
-// void	do_waitpid_pipex(t_proc *proc, int cnt_proc);
 void	close_pipe(t_proc *proc, int idx_proc);
 
 

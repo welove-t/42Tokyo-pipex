@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 13:43:56 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:09:13 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	do_child_last(t_pipex *pipex, int idx_proc)
 	if (!cmd_line[0])
 	{
 		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
 	redirect_out_dup_close(pipex);
@@ -35,7 +35,7 @@ void	do_child_middle(t_pipex *pipex, int idx_proc)
 	if (!cmd_line[0])
 	{
 		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	input_pipe_dup_close(pipex->proc[idx_proc - 1].pfd);
 	output_pipe_dup_close(pipex->proc[idx_proc].pfd);
@@ -50,7 +50,7 @@ void	do_child_first(t_pipex *pipex, int idx_proc)
 	if (!cmd_line[0])
 	{
 		error_not_exist_cmd(pipex->proc[idx_proc].cmd);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	redirect_in_dup_close(pipex);
 	output_pipe_dup_close(pipex->proc[idx_proc].pfd);

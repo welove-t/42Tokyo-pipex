@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:08:30 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 14:11:17 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:09:13 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,26 @@ void	do_pipe(int fd[2])
 	if (pipe(fd) < 0)
 	{
 		perror("pipe");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
 void	do_dup2(int old_fd, int new_fd)
 {
 	if (dup2(old_fd, new_fd) < 0)
-		exit(1);
+	{
+		perror("dup2");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	do_execve(char **cmd_argv)
 {
 	if (execve(cmd_argv[0], cmd_argv, environ) < 0)
-		exit(1);
+	{
+		perror("execve");
+		exit(EXIT_FAILURE);
+	}
 }
 
 pid_t	do_fork(void)
@@ -39,7 +45,10 @@ pid_t	do_fork(void)
 
 	r_pid = fork();
 	if (r_pid < 0)
-		exit(1);
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
 	return (r_pid);
 }
 
@@ -50,6 +59,6 @@ void	do_wait(void)
 	if (wait(&status) < 0)
 	{
 		perror("wait");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }

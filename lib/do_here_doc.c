@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:43:09 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 12:37:01 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:09:13 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	input_here_doc(t_pipex *pipex, int fd)
 		write(1, "heredoc > ", 11);
 		buff = get_next_line(0);
 		if (!buff)
-			exit(1);
+			exit(EXIT_FAILURE);
 		if (!ft_strncmp(buff, pipex->limiter, ft_strlen(pipex->limiter)))
 			break ;
 		write(fd, buff, ft_strlen(buff));
