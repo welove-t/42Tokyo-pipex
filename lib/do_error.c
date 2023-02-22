@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:27:10 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 10:10:23 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:13:12 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	put_error_msg(char *error_msg)
 {
-	printf("%s\n", error_msg);
+	perror(error_msg);
 }
 
 void	error_not_exist_cmd(char *cmd)
