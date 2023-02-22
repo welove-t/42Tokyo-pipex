@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:59:52 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/15 09:58:15 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 08:42:59 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static char	*get_cmd(char *cmd);
 static char	*get_path(char *cmd);
-
 
 char	**get_cmd_array(char *cmd_line)
 {

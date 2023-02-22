@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 13:41:51 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 20:32:44 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 12:33:17 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct t_pipex
 	char	*outfile_name;
 	char	*limiter;
 	int		min_arg_size;
+	int		cnt_proc;
 }	t_pipex;
 
 extern char	**environ;
@@ -66,10 +67,8 @@ char	*do_strdup(char *s);
 char	**do_split(char *str, char sep);
 
 // do_system_call(file)
-int		do_open_normal_read(const char *file_path);
-int		do_open_normal_write(const char *file_path);
-int		do_open_heredoc_read(void);
-int		do_open_heredoc_write(const char *file_path);
+int		do_open_read(const char *file_path);
+int		do_open_write(const char *file_path);
 void	do_close(int fd);
 
 // do_system_call(pipe)
@@ -93,7 +92,9 @@ char	**get_cmd_array(char *cmd_line);
 int		get_env_index(const char *key, int index_start);
 
 // do_here_doc
-void	do_here_doc_in(t_pipex *pipex);
+void	do_here_doc_in(t_pipex *pipex, int idx_proc);
+void	input_here_doc(t_pipex *pipex, int fd);
+
 
 // finalize
 void	do_waitpid_pipex(t_proc *proc, int cnt_proc);

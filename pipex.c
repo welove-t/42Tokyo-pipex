@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:57:28 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/21 20:41:31 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 11:10:08 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ int	main(int argc, char *argv[])
 	if (!pipex.min_arg_size || argc < pipex.min_arg_size)
 		return (0);
 	i = 0;
-	while (i < argc - 3)
+	while (i < pipex.cnt_proc)
 	{
-		if (i < argc - 4)
+		if (i < pipex.cnt_proc - 1)
 			do_pipe(pipex.proc[i].pfd);
 		pipex.proc[i].pid = do_fork();
 		if (i == 0 && pipex.proc[i].pid == 0)
 			do_child_first(&pipex, i);
-		else if (i == argc - 4 && pipex.proc[i].pid == 0)
+		else if (i == pipex.cnt_proc - 1 && pipex.proc[i].pid == 0)
 			do_child_last(&pipex, i);
 		else if (pipex.proc[i].pid == 0)
 			do_child_middle(&pipex, i);
@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 			close_pipe(pipex.proc, i);
 		i++;
 	}
-	do_waitpid_pipex(pipex.proc, argc - 3);
+	do_waitpid_pipex(pipex.proc, pipex.cnt_proc);
 	return (0);
 }
 
