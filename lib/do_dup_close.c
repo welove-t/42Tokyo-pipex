@@ -6,7 +6,7 @@
 /*   By: terabu <terabu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 09:31:04 by terabu            #+#    #+#             */
-/*   Updated: 2023/02/22 13:13:20 by terabu           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:41:12 by terabu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	redirect_in_dup_close(t_pipex *pipex)
 {
-	int	fd;
+	int		fd;
+	char	*filepath;
 
-	if (!ft_strncmp(pipex->infile_name, HERE_DOC, HERE_DOC_CNT))
+	filepath = pipex->infile_name;
+	if (!ft_strncmp(pipex->infile_name, HERE_DOC_NAME, HERE_DOC_CNT))
 	{
-		fd = do_open_write(pipex->infile_name);
+		fd = do_open_write(HERE_DOC_FILE);
 		input_here_doc(pipex, fd);
 		do_close(fd);
+		filepath = HERE_DOC_FILE;
 	}
-	fd = do_open_read(pipex->infile_name);
+	fd = do_open_read(filepath);
 	do_dup2(fd, STDIN_FILENO);
 	do_close(fd);
 }
